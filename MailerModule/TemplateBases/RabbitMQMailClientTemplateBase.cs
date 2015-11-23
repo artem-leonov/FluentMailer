@@ -9,7 +9,7 @@ namespace MailerModule.TemplateBases
     {
         public string RenderPart(string templateName, object model = null)
         {
-            string path = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Templates", templateName);
+            string path = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, templateName);
             return Razor.Parse(File.ReadAllText(path), model);
         }
     }

@@ -2,3 +2,7 @@
 obj/
 bin/
 packages/
+*.nupkg.bak
+*.nupkg
+*.log
+*.user

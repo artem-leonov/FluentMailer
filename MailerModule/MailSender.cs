@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using MailerModule.Extensions;
 using MailerModule.Interfaces;
 using RazorEngine;
 using Encoding = System.Text.Encoding;
@@ -23,12 +24,13 @@ namespace MailerModule
 
         public IMailSender WithView<T>(string viewPath, T model)
         {
-            if (!File.Exists(viewPath))
+            var path = viewPath.ResolvePath();
+            if (!File.Exists(path))
             {
-                throw new ArgumentException(string.Format("View with path {0} not found", viewPath));
+                throw new ArgumentException(string.Format("View with path {0} not found", path));
             }
 
-            var viewContent = File.ReadAllText(viewPath);
+            var viewContent = File.ReadAllText(path);
             _viewBody = Razor.Parse(viewContent, model);
 
             return this;
@@ -36,12 +38,14 @@ namespace MailerModule
 
         public IMailSender WithView(string viewPath)
         {
-            if (!File.Exists(viewPath))
+            var path = viewPath.ResolvePath();
+
+            if (!File.Exists(path))
             {
-                throw new ArgumentException(string.Format("View with path {0} not found", viewPath));
+                throw new ArgumentException(string.Format("View with path {0} not found", path));
             }
 
-            var viewContent = File.ReadAllText(viewPath);
+            var viewContent = File.ReadAllText(path);
             _viewBody = Razor.Parse(viewContent);
 
             return this;

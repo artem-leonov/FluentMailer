@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using MailerModule.Extensions;
 using RazorEngine.Templating;
 
 namespace MailerModule.TemplateResolvers
@@ -9,12 +10,8 @@ namespace MailerModule.TemplateResolvers
     {
         public string Resolve(string name)
         {
-            if (name == null)
-            {
-                throw new ArgumentNullException("name");
-            }
+            var path = name.ResolvePath();
 
-            var path = HttpContext.Current.Server.MapPath(name);
             return File.ReadAllText(path, System.Text.Encoding.Default);
         }
     }
