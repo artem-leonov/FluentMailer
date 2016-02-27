@@ -1,5 +1,3 @@
 language: csharp
-install:
-	- nuget restore MailerModule.sln
-script:
-	- xbuild /p:Configuration=Release MailerModule.sln
+install: nuget restore MailerModule.sln
+script: xbuild /p:Configuration=Release MailerModule.sln
