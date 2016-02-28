@@ -2,6 +2,10 @@ stages:
   - restore nuget packages
   - build
   - deploy
+  
+ cache:
+   key: "$CI_BUILD_NAME/$CI_BUILD_REF_NAME"
+   untracked: true
 
 restore nuget packages job:
   stage: restore nuget packages
