@@ -1,24 +1,11 @@
 stages:
-  - restore nuget packages
   - build
-
-restore nuget packages job:
-  stage: restore nuget packages
-  script:
-    - echo "Restoring NuGet Packages..."
-    - 'c:\nuget\nuget.exe restore "MailerModule.sln"'
-  artifacts:
-    paths:
-      - packages/
-  tags: 
-    - nuget
-  only:
-    - master
-    - tags
 
 build job:
   stage: build
   script:  
+    - echo "Restoring NuGet Packages..."
+    - 'c:\nuget\nuget.exe restore "MailerModule.sln"'
     - ''
     - echo "Build..."
     - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "MailerModule.sln"
@@ -28,6 +15,7 @@ build job:
   tags: 
     - msbuild
     - dotnet
+    - nuget
   only: 
     - master
     - tags
