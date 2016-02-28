@@ -15,8 +15,8 @@ namespace MailerModule
         {
             var templateConfig = new TemplateServiceConfiguration
             {
-                BaseTemplateType = typeof(MailerTemplateBase<>),
-                Resolver = new MailerTemplateResolver()
+                BaseTemplateType = typeof(MailerModuleTemplateBase<>),
+                Resolver = new MailerModuleTemplateResolver()
             };
             Razor.SetTemplateService(new TemplateService(templateConfig));
         }

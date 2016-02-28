@@ -27,7 +27,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RazorEngine, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
@@ -56,8 +56,8 @@
     <Compile Include="Mailer.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateBases\RabbitMQMailClientTemplateBase.cs" />
-    <Compile Include="TemplateResolvers\RabbitMQMailClientTemplateResolver.cs" />
+    <Compile Include="TemplateBases\MailerModuleTemplateBase.cs" />
+    <Compile Include="TemplateResolvers\MailerModuleTemplateResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
