@@ -3,15 +3,14 @@ stages:
   - build
   - deploy
 
-cache:
-  key: "$CI_BUILD_NAME/$CI_BUILD_REF_NAME"
-  untracked: true
-
 restore nuget packages job:
   stage: restore nuget packages
   script:
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore "MailerModule.sln"'
+  artifacts:
+    paths:
+      - packages/
   tags: 
     - nuget
   only:
@@ -24,20 +23,12 @@ build job:
     - ''
     - echo "Build..."
     - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "MailerModule.sln"
+  artifacts:
+    paths:
+      - MailerModule.Package\lib\
   tags: 
     - msbuild
     - dotnet
   only: 
     - master
-    - tags
-
-stage:
-  stage: deploy
-  script:
-    - ''
-    - echo "Deploy..."
-  artifacts:
-    paths:
-      - MailerModule.Package\lib\
-  only:
     - tags
