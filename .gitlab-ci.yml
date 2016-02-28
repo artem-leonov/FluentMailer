@@ -7,7 +7,7 @@ restore nuget packages job:
   stage: restore nuget packages
   script:
     - echo "Restoring NuGet Packages..."
-    - "C:\Nuget\nuget.exe" restore "MailerModule.sln"
+    - '"c:\nuget\nuget.exe" restore "MailerModule.sln"'
   tags: 
     - nuget
   only:
