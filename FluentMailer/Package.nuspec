@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>FluentMailer</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>FluentMailer</title>
     <authors>Artem Leonov</authors>
     <owners>Artem Leonov</owners>
@@ -21,7 +21,7 @@
     <copyright>Artem Leonov © 2015</copyright>
     <dependencies>
         <group targetFramework="net40">
-          <dependency id="RazorEngine" version="3.3.0" />
+          <dependency id="RazorEngine" version="[3.0.0,4.0.0)" />
         </group>
     </dependencies>
     <references></references>
