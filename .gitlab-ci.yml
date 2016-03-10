@@ -1,0 +1,22 @@
+stages:
+  - build
+
+build job:
+  stage: build
+  script:  
+    - echo "Restoring NuGet Packages..."
+    - 'c:\nuget\nuget.exe restore "FluentMailer.sln"'
+    - ''
+    - echo "Build..."
+    - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "MailerModule.sln"
+  artifacts:
+    paths:
+      - FluentMailer\bin\Release\FluentMailer.dll
+      - FluentMailer.Unity\bin\Release\FluentMailer.Unity.dll
+  tags: 
+    - msbuild
+    - dotnet
+    - nuget
+  only: 
+    - master
+    - tags
