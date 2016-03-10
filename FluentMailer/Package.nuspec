@@ -25,7 +25,7 @@
         </group>
     </dependencies>
     <references></references>
-    <tags></tags>
+    <tags>fluent interface email sender smtp .net</tags>
   </metadata>
   <files>
     <file src="lib\" target="lib" />
