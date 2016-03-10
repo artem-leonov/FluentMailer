@@ -1,9 +1,11 @@
 obj/
 bin/
 packages/
+.vs/
+FluentMailer/lib/
+FluentMailer.Unity/lib/
 *.nupkg.bak
 *.nupkg
 *.log
 *.user
-.vs/
 *.suo
