@@ -27,8 +27,8 @@ publish job:
     - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "FluentMailer.sln"
     - 'Clear publish directories'
     - echo 'Clear publish directories...'
-    - del /q FluentMailer\lib\*
-    - del /q FluentMailer.Unity\lib\*
+    - del -Recurse FluentMailer\lib\*
+    - del -Recurse FluentMailer.Unity\lib\*
     - ''
     - echo 'Copying files into publish folders...'
     - copy FluentMailer\bin\Release\FluentMailer.dll FluentMailer\lib\
