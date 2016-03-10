@@ -16,6 +16,7 @@ test job:
     - nuget
   only:
     - /^release/.+$/
+    - /^hotfix/.+$/
 
 publish job:
   stage: publish
