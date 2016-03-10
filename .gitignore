@@ -1,4 +1,3 @@
-.vs/
 obj/
 bin/
 packages/
@@ -6,3 +5,5 @@ packages/
 *.nupkg
 *.log
 *.user
+.vs/
+*.suo
