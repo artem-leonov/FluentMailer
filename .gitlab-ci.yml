@@ -16,6 +16,7 @@ test job:
     - nuget
   only:
     - /^release/.+$/
+    - /^hotfix/.+$/
 
 publish job:
   stage: publish
@@ -33,10 +34,10 @@ publish job:
     - copy FluentMailer.Unity\bin\Release\FluentMailer.Unity.dll FluentMailer.Unity\lib\
     - ''
     - echo 'Creating Nuget Packages...'
-    - copy C:\nuget\nuget.exe pack FluentMailer\Package.nuspec
-    - copy C:\nuget\nuget.exe pack FluentMailer.Unity\Package.nuspec
+    - C:\nuget\nuget.exe pack FluentMailer\Package.nuspec
+    - C:\nuget\nuget.exe pack FluentMailer.Unity\Package.nuspec
     - echo 'Publishing into Nuget repository...'
-    - copy C:\nuget\nuget.exe push *.nupkg
+    - C:\nuget\nuget.exe push *.nupkg
   artifacts:
     paths:
       - FluentMailer\lib\*.dll
