@@ -1,18 +1,32 @@
 stages:
-  - build
+  - publish
 
-build job:
-  stage: build
+publish job:
+  stage: publish
   script:  
     - echo "Restoring NuGet Packages..."
     - 'c:\nuget\nuget.exe restore "FluentMailer.sln"'
     - ''
     - echo "Build..."
     - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "MailerModule.sln"
+    - 'Clear publish directories'
+    - echo 'Clear publish directories...'
+    - del /q FluentMailer\lib\*
+    - del /q FluentMailer.Unity\lib\*
+    - ''
+    - echo 'Copying files into publish folders...'
+    - copy FluentMailer\bin\Release\FluentMailer.dll FluentMailer\lib\
+    - copy FluentMailer.Unity\bin\Release\FluentMailer.Unity.dll FluentMailer.Unity\lib\
+    - ''
+    - echo 'Creating Nuget Packages...'
+    - copy C:\nuget\nuget.exe pack FluentMailer\Package.nuspec
+    - copy C:\nuget\nuget.exe pack FluentMailer.Unity\Package.nuspec
+    - echo 'Publishing into Nuget repository...'
+    - copy C:\nuget\nuget.exe push *.nupkg
   artifacts:
     paths:
-      - FluentMailer\bin\Release\FluentMailer.dll
-      - FluentMailer.Unity\bin\Release\FluentMailer.Unity.dll
+      - FluentMailer\lib\*.dll
+      - FluentMailer.Unity\lib\*.dll
   tags: 
     - msbuild
     - dotnet
