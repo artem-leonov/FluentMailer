@@ -62,6 +62,7 @@
     <None Include="NuGet.config" />
     <None Include="Package.nuspec" />
     <None Include="packages.config" />
+    <None Include="tools\Init.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="content\" />
