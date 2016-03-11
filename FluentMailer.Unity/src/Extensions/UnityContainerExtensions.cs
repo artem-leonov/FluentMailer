@@ -5,7 +5,7 @@ namespace FluentMailer.Unity.Extensions
 {
     public static class UnityContainerExtensions
     {
-        public static void RegisterMailerModuleDependencies(this IUnityContainer container)
+        public static void RegisterFluentMailerDependencies(this IUnityContainer container)
         {
             UnityConfig.Configure(container);
         }
