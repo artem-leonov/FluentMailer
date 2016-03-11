@@ -1,0 +1,1 @@
+$DTE.ItemOperations.Navigate("https://gitlab.com/artem-leonov/FluentMailer/blob/" + $package.Version + "/README.md")
