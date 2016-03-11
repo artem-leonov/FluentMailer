@@ -10,7 +10,7 @@ namespace FluentMailer.TemplateResolvers
         {
             var path = name.ResolvePath();
 
-            return File.ReadAllText(path, System.Text.Encoding.Default);
+            return File.ReadAllText(path, System.Text.Encoding.UTF8);
         }
     }
 }
