@@ -21,68 +21,68 @@ unityContainer.RegisterFluentMailerDependencies();
 ```
 > For now, Fluent Mailer **can be used only with Unity**.
 
-3. Use Fluent Mailer
+# Using Fluent Mailer
 
-    3.1. Create Message
-    ```csharp
-    public class SomeService
-    {
-	    private readonly IFluentMailer _fluentMailer;
+##1. Create Message
+```csharp
+public class SomeService
+{
+	private readonly IFluentMailer _fluentMailer;
 	
-	    public SomeService(IFluentMailer fluentMailer)
-	    {
-		    _fluentMailer = fluentMailer;
-	    }
+	public SomeService(IFluentMailer fluentMailer)
+	{
+		_fluentMailer = fluentMailer;
+	}
 	
-	    public void SendMessage()
-	    {
-		    var message = _fluentMailer.CreateMessage();
-	    }
-    }
+	public void SendMessage()
+	{
+		var message = _fluentMailer.CreateMessage();
+	}
+}
     ```
-    3.2. Configure Message Body
+##2. Configure Message Body
 
-    With view
+###With view
 
-    ```csharp
-    var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml");
-    ```
+```csharp
+var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml");
+```
 
-    With view and model
-    ```csharp
-    var model = new MailModel();
-    var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml", model);
-    ```
+###With view and model
+```csharp
+var model = new MailModel();
+var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml", model);
+```
 
-    With view body
-    ```csharp
-    var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
-    ```
+###With view body
+```csharp
+var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
+```
     
-    3.3 Configuring Other Message Properties
+##3. Configure Other Message Properties
 
-    ## Adding receivers
-    ```csharp
-    mailSender.WithReceiver("abc@abc.com"); // Adds abc@abc.com to recievers
-    mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd.com and cde@cde.com to receivers too
-    ```
-    
-    ## Setting Up Subject
-    ```csharp
-    mailSender.WithSubject("Mail subject");
-    ```
-    
-    ## Sending Mail
+### Adding receivers
+```csharp
+mailSender.WithReceiver("abc@abc.com"); // Adds abc@abc.com to recievers
+mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd.com and cde@cde.com to receivers too
+```
 
-    Synchronously
-    ```csharp
-    mailSender.Send();
-    ```
-    
-    Asynchronously
-    ```csharp
-    mailSender.SendAsync();
-    ```
+### Setting Up Subject
+```csharp
+mailSender.WithSubject("Mail subject");
+```
+
+##4. Send Mail
+
+###Synchronously
+```csharp
+mailSender.Send();
+```
+
+###Asynchronously
+```csharp
+await mailSender.SendAsync();
+```
     
 # Fluent Interface
 
