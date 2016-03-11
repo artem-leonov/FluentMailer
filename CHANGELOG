@@ -1,0 +1,19 @@
+v1.0.8
+[R] Rename fluent mailer register dependencies in Unity method
+[+] Added help in readme
+[+] Added script opens readme url after installing package into solution
+[R] Updated target .NET Framework to v4.5
+[+] Change mailer SendAsync method return type to Task
+[F] Fix crash when view without model
+[+] Change resolving view path. If it is not Web application, then construct absolute path from current directory
+[F] Change default view encoding to UTF8
+[F] Shallow fixes
+
+v1.0.7
+[+] Actualized package dependencies
+
+v1.0.2
+[F] Resolving view name by relative path
+
+v1.0
+[+] Implementing base features

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Hosting;
 
 namespace FluentMailer.Extensions
 {
@@ -12,7 +13,17 @@ namespace FluentMailer.Extensions
                 throw new ArgumentNullException("Path cannot be a null");
             }
 
-            return HttpContext.Current.Server.MapPath(path);
+            if (!path.StartsWith("~"))
+            {
+                if (!path.StartsWith("/") && !path.StartsWith(@"\"))
+                {
+                    path = "/" + path;
+                }
+
+                path = "~" + path;
+            }
+
+            return HostingEnvironment.MapPath(path) ?? path.Replace("~", AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }
