@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentMailer.Extensions;
 using FluentMailer.Interfaces;
 using RazorEngine;
@@ -11,9 +13,9 @@ using Encoding = System.Text.Encoding;
 
 namespace FluentMailer
 {
-    internal class FluentMailerMailSender: IFluentMailerMessageBodyCreator, IFluentMailerMailSender
+    internal class FluentMailerMailSender : IFluentMailerMessageBodyCreator, IFluentMailerMailSender
     {
-        private readonly ICollection<string> _receivers; 
+        private readonly ICollection<string> _receivers;
         private string _viewBody;
         private string _subject;
 
@@ -134,11 +136,13 @@ namespace FluentMailer
                 message.Subject = _subject;
             }
 
-            var smtpClient = new SmtpClient();
-            smtpClient.Send(message);            
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Send(message);
+            }
         }
 
-        public void SendAsync()
+        public async Task SendAsync()
         {
             var message = new MailMessage();
             message.BodyEncoding = Encoding.UTF8;
@@ -157,7 +161,12 @@ namespace FluentMailer
             }
 
             var smtpClient = new SmtpClient();
-            smtpClient.SendAsync(message, null);
+
+            await Task.Run(() =>
+            {
+                smtpClient.Send(message);
+                smtpClient.Dispose();
+            });
         }
     }
 }

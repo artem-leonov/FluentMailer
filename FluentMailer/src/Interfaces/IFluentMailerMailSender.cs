@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FluentMailer.Interfaces
 {
@@ -8,6 +9,6 @@ namespace FluentMailer.Interfaces
         IFluentMailerMailSender WithReceivers(IEnumerable<string> emails);
         IFluentMailerMailSender WithSubject(string subject);
         void Send();
-        void SendAsync();
+        Task SendAsync();
     }
 }
