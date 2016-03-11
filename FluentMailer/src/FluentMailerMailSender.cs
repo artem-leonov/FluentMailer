@@ -48,7 +48,7 @@ namespace FluentMailer
             }
 
             var viewContent = File.ReadAllText(path);
-            _viewBody = Razor.Parse(viewContent);
+            _viewBody = Razor.Parse(viewContent, new object());
 
             return this;
         }
