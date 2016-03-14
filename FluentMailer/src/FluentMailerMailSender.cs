@@ -14,13 +14,15 @@ namespace FluentMailer
 {
     internal class FluentMailerMailSender : IFluentMailerMessageBodyCreator, IFluentMailerMailSender
     {
-        private readonly ICollection<string> _receivers;
         private string _viewBody;
         private string _subject;
+        private readonly ICollection<string> _receivers;
+        private readonly ICollection<Attachment> _attachments; 
 
         public FluentMailerMailSender()
         {
             _receivers = new List<string>();
+            _attachments = new List<Attachment>();
         }
 
         public IFluentMailerMailSender WithView<T>(string viewPath, T model)
@@ -117,6 +119,20 @@ namespace FluentMailer
             return this;
         }
 
+        public IFluentMailerMailSender WithAttachment(string filename)
+        {
+            _attachments.Add(new Attachment(filename.ResolvePath()));
+
+            return this;
+        }
+
+        public IFluentMailerMailSender WithAttachment(Stream fileContent, string filename)
+        {
+            _attachments.Add(new Attachment(fileContent, filename));
+
+            return this;
+        }
+
         public void Send()
         {
             var message = new MailMessage();
@@ -128,6 +144,11 @@ namespace FluentMailer
             foreach (var receiver in _receivers)
             {
                 message.To.Add(receiver);
+            }
+
+            foreach (var attachment in _attachments)
+            {
+                message.Attachments.Add(attachment);
             }
 
             if (_subject != null)

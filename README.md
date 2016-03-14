@@ -87,6 +87,13 @@ mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd
 mailSender.WithSubject("Mail subject");
 ```
 
+### Adding attachments
+```csharp
+var fstream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "/1.docx", FileMode.Open);
+mailSender.WithAttachment(fstream, "document.docx")
+	.WithAttachment("~/book.pdf");
+```
+
 ## 4. Send Mail
 
 ### Synchronously
