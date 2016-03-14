@@ -3,7 +3,8 @@ Module for sending emails via smtp with fluent interface
 
 # Configuration
 
-## Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
+## Add into Web.config/app.config standart system.net/mailSettings configuration. 
+For example:
 ```xml
 <system.net>
 	<mailSettings>
@@ -25,17 +26,17 @@ Now, you can resolve Fluent Mailer through Unity:
 ```csharp
 public class SomeService
 {
-	private readonly IFluentMailer _fluentMailer;
+    private readonly IFluentMailer _fluentMailer;
 	
-	public SomeService(IFluentMailer fluentMailer)
-	{
-		_fluentMailer = fluentMailer;
-	}
+    public SomeService(IFluentMailer fluentMailer)
+    {
+        _fluentMailer = fluentMailer;
+    }
 	
-	public void SendMessage()
-	{
-		// Using _fluentMailer here
-	}
+    public void SendMessage()
+    {
+        // Using _fluentMailer here
+    }
 }
 ```
 2. Resolve Fluent Mailer through a static factory (using FluentMailer.Factory package)
@@ -115,5 +116,6 @@ await _fluentMailer.CreateMessage()
 	.WithReceiver("abc@abc.com")
 	.WithReceiver("bcd@bcd.com")
 	.WithSubject("Mail subject")
+	.WithAttachment("~/book.pdf")
 	.SendAsync();
 ```
