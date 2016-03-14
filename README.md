@@ -88,7 +88,7 @@ await mailSender.SendAsync();
 
 You can do all of it in one move
 ```csharp
-_fluentMailer.CreateMessage()
+await _fluentMailer.CreateMessage()
 	.WithViewBody("<html><body>Test message</body></html>")
 	.WithReceiver("abc@abc.com")
 	.WithReceiver("bcd@bcd.com")
