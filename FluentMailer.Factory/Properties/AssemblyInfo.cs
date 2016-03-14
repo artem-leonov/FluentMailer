@@ -5,16 +5,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FluentMailer")]
-[assembly: AssemblyDescription("Module for sending emails via smtp with fluent interface")]
+[assembly: AssemblyTitle("FluentMailer.Factory")]
+[assembly: AssemblyDescription("Adds a static factory to create Fluent Mailer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FluentMailer")]
+[assembly: AssemblyProduct("FluentMailer.Factory")]
 [assembly: AssemblyCopyright("Artem Leonov © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: InternalsVisibleTo("FluentMailer.Unity")]
-[assembly: InternalsVisibleTo("FluentMailer.Factory")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

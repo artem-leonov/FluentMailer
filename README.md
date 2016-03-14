@@ -3,7 +3,7 @@ Module for sending emails via smtp with fluent interface
 
 # Configuration
 
-1. Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
+## Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
 ```xml
 <system.net>
 	<mailSettings>
@@ -14,81 +14,103 @@ Module for sending emails via smtp with fluent interface
 </system.net>
 ```
 
-2. Register Fluent Mailer dependencies in Unity (using FluentMailer.Unity package)
+## Prepare Fluent Mailer Resolving
+For now you have two ways to resolve Fluent Mailer Instance:
+1. Register Fluent Mailer dependencies in Unity (using FluentMailer.Unity package)
 ```csharp
 var unityContainer = new UnityContainer();
 unityContainer.RegisterFluentMailerDependencies();
 ```
-> For now, Fluent Mailer **can be used only with Unity**.
-
-3. Use Fluent Mailer
-
-    3.1. Create Message
-    ```csharp
-    public class SomeService
-    {
-	    private readonly IFluentMailer _fluentMailer;
+Now, you can resolve Fluent Mailer through Unity:
+```csharp
+public class SomeService
+{
+	private readonly IFluentMailer _fluentMailer;
 	
-	    public SomeService(IFluentMailer fluentMailer)
-	    {
-		    _fluentMailer = fluentMailer;
-	    }
+	public SomeService(IFluentMailer fluentMailer)
+	{
+		_fluentMailer = fluentMailer;
+	}
 	
-	    public void SendMessage()
-	    {
-		    var message = _fluentMailer.CreateMessage();
-	    }
-    }
-    ```
-    3.2. Configure Message Body
+	public void SendMessage()
+	{
+		// Using _fluentMailer here
+	}
+}
+```
+2. Resolve Fluent Mailer through a static factory (using FluentMailer.Factory package)
+```csharp
+var fluentMailer = FluentMailerFactory.Create();
+```
+Additionally, you can configure resolving Fluent Mailer through a static factory for you dependency injection container.
+Example for NInject:
+```csharp
+Bind<IFluentMailer>.ToMethod(context => FluentMailerFactory.Create())
+```
 
-    With view
+# Using Fluent Mailer
 
-    ```csharp
-    var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml");
-    ```
+## 1. Create Message
+```csharp
+var message = _fluentMailer.CreateMessage();
+```
 
-    With view and model
-    ```csharp
-    var model = new MailModel();
-    var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml", model);
-    ```
+## 2. Configure Message Body
 
-    With view body
-    ```csharp
-    var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
-    ```
+### With view
+
+```csharp
+var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml");
+```
+
+### With view and model
+```csharp
+var model = new MailModel();
+var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml", model);
+```
+
+### With view body
+```csharp
+var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
+```
     
-    3.3 Configuring Other Message Properties
+## 3. Configure Other Message Properties
 
-    ## Adding receivers
-    ```csharp
-    mailSender.WithReceiver("abc@abc.com"); // Adds abc@abc.com to recievers
-    mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd.com and cde@cde.com to receivers too
-    ```
-    
-    ## Setting Up Subject
-    ```csharp
-    mailSender.WithSubject("Mail subject");
-    ```
-    
-    ## Sending Mail
+### Adding receivers
+```csharp
+mailSender.WithReceiver("abc@abc.com"); // Adds abc@abc.com to recievers
+mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd.com and cde@cde.com to receivers too
+```
 
-    Synchronously
-    ```csharp
-    mailSender.Send();
-    ```
-    
-    Asynchronously
-    ```csharp
-    mailSender.SendAsync();
-    ```
+### Setting Up Subject
+```csharp
+mailSender.WithSubject("Mail subject");
+```
+
+### Adding attachments
+```csharp
+var fstream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "/1.docx", FileMode.Open);
+mailSender.WithAttachment(fstream, "document.docx")
+	.WithAttachment("~/book.pdf");
+```
+
+## 4. Send Mail
+
+### Synchronously
+```csharp
+mailSender.Send();
+```
+
+### Asynchronously
+```csharp
+await mailSender.SendAsync();
+```
     
 # Fluent Interface
 
 You can do all of it in one move
 ```csharp
-_fluentMailer.CreateMessage()
+await _fluentMailer.CreateMessage()
 	.WithViewBody("<html><body>Test message</body></html>")
 	.WithReceiver("abc@abc.com")
 	.WithReceiver("bcd@bcd.com")

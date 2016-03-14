@@ -32,16 +32,20 @@ publish job:
     - copy FluentMailer\bin\Release\FluentMailer.dll FluentMailer\lib\
     - mkdir FluentMailer.Unity\lib
     - copy FluentMailer.Unity\bin\Release\FluentMailer.Unity.dll FluentMailer.Unity\lib\
+    - mkdir FluentMailer.Factory\lib
+    - copy FluentMailer.Factory\bin\Release\FluentMailer.Factory.dll FluentMailer.Factory\lib\
     - ''
     - echo 'Creating Nuget Packages...'
     - C:\nuget\nuget.exe pack FluentMailer\Package.nuspec
     - C:\nuget\nuget.exe pack FluentMailer.Unity\Package.nuspec
+    - C:\nuget\nuget.exe pack FluentMailer.Factory\Package.nuspec
     - echo 'Publishing into Nuget repository...'
     - C:\nuget\nuget.exe push *.nupkg
   artifacts:
     paths:
       - FluentMailer\lib\*.dll
       - FluentMailer.Unity\lib\*.dll
+      - FluentMailer.Factory\lib\*.dll
   tags: 
     - msbuild
     - dotnet

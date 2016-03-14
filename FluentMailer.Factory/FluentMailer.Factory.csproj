@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0451BAEF-DF2E-4B98-8644-94EE9415E389}</ProjectGuid>
+    <ProjectGuid>{C2CA0E41-6833-48AC-ACC0-5322EA22F935}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FluentMailer</RootNamespace>
-    <AssemblyName>FluentMailer</AssemblyName>
+    <RootNamespace>FluentMailer.Factory</RootNamespace>
+    <AssemblyName>FluentMailer.Factory</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -49,32 +49,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Extensions\StringExtensions.cs" />
-    <Compile Include="src\Factories\Interfaces\IFluentMailerMessageBodyCreatorFactory.cs" />
-    <Compile Include="src\FluentMailer.cs" />
-    <Compile Include="src\FluentMailerMailSender.cs" />
-    <Compile Include="src\Interfaces\IFluentMailer.cs" />
-    <Compile Include="src\Interfaces\IFluentMailerMailSender.cs" />
-    <Compile Include="src\Interfaces\IFluentMailerMessageBodyCreator.cs" />
-    <Compile Include="src\TemplateBases\MailerModuleTemplateBase.cs" />
-    <Compile Include="src\TemplateResolvers\MailerModuleTemplateResolver.cs" />
+    <Compile Include="src\Factories\FluentMailerMessageBodyCreatorFactory.cs" />
+    <Compile Include="src\FluentMailerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NuGet.config" />
     <None Include="Package.nuspec" />
-    <None Include="packages.config" />
-    <None Include="tools\Init.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="RazorEngine, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorEngine.3.0.0\lib\net40\RazorEngine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Web" />
+    <ProjectReference Include="..\FluentMailer\FluentMailer.csproj">
+      <Project>{0451baef-df2e-4b98-8644-94ee9415e389}</Project>
+      <Name>FluentMailer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

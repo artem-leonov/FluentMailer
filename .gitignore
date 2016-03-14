@@ -4,6 +4,8 @@ packages/
 .vs/
 FluentMailer/lib/
 FluentMailer.Unity/lib/
+FluentMailer.Factory/lib/
+ConsoleApplication1/
 *.nupkg.bak
 *.nupkg
 *.log
