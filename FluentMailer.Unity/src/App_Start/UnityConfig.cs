@@ -1,4 +1,6 @@
-﻿using FluentMailer.Interfaces;
+﻿using FluentMailer.Factories.Interfaces;
+using FluentMailer.Interfaces;
+using FluentMailer.Unity.Factories;
 using Microsoft.Practices.Unity;
 
 namespace FluentMailer.Unity.App_Start
@@ -8,7 +10,10 @@ namespace FluentMailer.Unity.App_Start
         public static void Configure(IUnityContainer container)
         {
             container.RegisterType<IFluentMailer, FluentMailer>();
-            container.RegisterType<IFluentMailerMailSender, FluentMailerMailSender>(new TransientLifetimeManager());
+            container.RegisterType<IFluentMailerMessageBodyCreator, FluentMailerMailSender>(new TransientLifetimeManager());
+            
+            var messageBodyCreatorFactory = new UnityFluentMailerMessageBodyCreatorFactory(container);
+            container.RegisterInstance(typeof(IFluentMailerMessageBodyCreatorFactory), messageBodyCreatorFactory, new ContainerControlledLifetimeManager());
         }
     }
 }

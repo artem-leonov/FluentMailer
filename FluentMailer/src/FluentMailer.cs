@@ -1,4 +1,5 @@
-﻿using FluentMailer.Interfaces;
+﻿using FluentMailer.Factories.Interfaces;
+using FluentMailer.Interfaces;
 using FluentMailer.TemplateBases;
 using FluentMailer.TemplateResolvers;
 using RazorEngine;
@@ -9,9 +10,12 @@ namespace FluentMailer
 {
     internal class FluentMailer: IFluentMailer
     {
+        private readonly IFluentMailerMessageBodyCreatorFactory _fluentMailerMessageBodyCreatorFactory;
 
-        public FluentMailer()
+        public FluentMailer(IFluentMailerMessageBodyCreatorFactory fluentMailerMessageBodyCreatorFactory)
         {
+            _fluentMailerMessageBodyCreatorFactory = fluentMailerMessageBodyCreatorFactory;
+
             var templateConfig = new TemplateServiceConfiguration
             {
                 BaseTemplateType = typeof(MailerModuleTemplateBase<>),
@@ -22,7 +26,7 @@ namespace FluentMailer
 
         public IFluentMailerMessageBodyCreator CreateMessage()
         {
-            return new FluentMailerMailSender();
+            return _fluentMailerMessageBodyCreatorFactory.Create();
         }
     }
 }

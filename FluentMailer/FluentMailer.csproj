@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Extensions\StringExtensions.cs" />
+    <Compile Include="src\Factories\Interfaces\IFluentMailerMessageBodyCreatorFactory.cs" />
     <Compile Include="src\FluentMailer.cs" />
     <Compile Include="src\FluentMailerMailSender.cs" />
     <Compile Include="src\Interfaces\IFluentMailer.cs" />

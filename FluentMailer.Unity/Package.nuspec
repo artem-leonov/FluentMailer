@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>FluentMailer.Unity</id>
-    <version>1.0.9</version>
+    <version>1.1</version>
     <title>FluentMailer.Unity</title>
     <authors>Artem Leonov</authors>
     <owners></owners>
@@ -17,11 +17,12 @@
     <language>en-US</language>
     <projectUrl>https://gitlab.com/artem-leonov/FluentMailer</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/GPL-3.0</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <copyright>Artem Leonov © 2015</copyright>
     <dependencies>
         <group targetFramework="net45">
-          <dependency id="FluentMailer" version="[1.0.2,1.0.9]" />
+          <dependency id="FluentMailer" version="1.1" />
           <dependency id="Unity" version="[3.0.1304.0,4.0.0)" />
         </group>
     </dependencies>
