@@ -51,5 +51,4 @@ publish job:
     - dotnet
     - nuget
   only: 
-    - master
     - tags
