@@ -3,7 +3,7 @@ Module for sending emails via smtp with fluent interface
 
 # Configuration
 
-1. Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
+## Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
 ```xml
 <system.net>
 	<mailSettings>
@@ -14,16 +14,14 @@ Module for sending emails via smtp with fluent interface
 </system.net>
 ```
 
-2. Register Fluent Mailer dependencies in Unity (using FluentMailer.Unity package)
+## Prepare Fluent Mailer Resolving
+For now you have two ways to resolve Fluent Mailer Instance:
+1. Register Fluent Mailer dependencies in Unity (using FluentMailer.Unity package)
 ```csharp
 var unityContainer = new UnityContainer();
 unityContainer.RegisterFluentMailerDependencies();
 ```
-> For now, Fluent Mailer **can be used only with Unity**.
-
-# Using Fluent Mailer
-
-##1. Create Message
+Now, you can resolve Fluent Mailer through Unity:
 ```csharp
 public class SomeService
 {
@@ -36,30 +34,47 @@ public class SomeService
 	
 	public void SendMessage()
 	{
-		var message = _fluentMailer.CreateMessage();
+		// Using _fluentMailer here
 	}
 }
-    ```
-##2. Configure Message Body
+```
+2. Resolve Fluent Mailer through a static factory (using FluentMailer.Factory package)
+```csharp
+var fluentMailer = FluentMailerFactory.Create();
+```
+Additionally, you can configure resolving Fluent Mailer through a static factory for you dependency injection container.
+Example for NInject:
+```csharp
+Bind<IFluentMailer>.ToMethod(context => FluentMailerFactory.Create())
+```
 
-###With view
+# Using Fluent Mailer
+
+## 1. Create Message
+```csharp
+var message = _fluentMailer.CreateMessage();
+```
+
+## 2. Configure Message Body
+
+### With view
 
 ```csharp
 var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml");
 ```
 
-###With view and model
+### With view and model
 ```csharp
 var model = new MailModel();
 var mailSender = message.WithView("~/Views/Mailer/Mail.cshtml", model);
 ```
 
-###With view body
+### With view body
 ```csharp
 var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
 ```
     
-##3. Configure Other Message Properties
+## 3. Configure Other Message Properties
 
 ### Adding receivers
 ```csharp
@@ -72,14 +87,14 @@ mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd
 mailSender.WithSubject("Mail subject");
 ```
 
-##4. Send Mail
+## 4. Send Mail
 
-###Synchronously
+### Synchronously
 ```csharp
 mailSender.Send();
 ```
 
-###Asynchronously
+### Asynchronously
 ```csharp
 await mailSender.SendAsync();
 ```

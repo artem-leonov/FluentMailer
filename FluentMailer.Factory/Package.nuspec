@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FluentMailer.Factory</id>
+    <version>1.1</version>
+    <title>FluentMailer.Factory</title>
+    <authors>rashs</authors>
+    <owners></owners>
+    <description>
+      Adds a static factory to create Fluent Mailer
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+      Adds a static factory to create Fluent Mailer
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://nuget.org/packages/FluentMailer.Factory</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <licenseUrl>https://opensource.org/licenses/GPL-3.0</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <copyright>Artem Leonov © 2015</copyright>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="FluentMailer" version="1.1" />
+      </group>
+    </dependencies>
+    <references></references>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>

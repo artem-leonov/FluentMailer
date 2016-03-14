@@ -59,7 +59,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="content\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
