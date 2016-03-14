@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentMailer.Unity", "Fluen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentMailer.Factory", "FluentMailer.Factory\FluentMailer.Factory.csproj", "{C2CA0E41-6833-48AC-ACC0-5322EA22F935}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{18283BB6-78C5-409A-9963-F097152F14DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C2CA0E41-6833-48AC-ACC0-5322EA22F935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2CA0E41-6833-48AC-ACC0-5322EA22F935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2CA0E41-6833-48AC-ACC0-5322EA22F935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18283BB6-78C5-409A-9963-F097152F14DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18283BB6-78C5-409A-9963-F097152F14DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18283BB6-78C5-409A-9963-F097152F14DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18283BB6-78C5-409A-9963-F097152F14DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
