@@ -3,7 +3,8 @@ Module for sending emails via smtp with fluent interface
 
 # Configuration
 
-## Add into Web.config/app.config standart system.net/mailSettings configuration. For example:
+## Add into Web.config/app.config standart system.net/mailSettings configuration. 
+For example:
 ```xml
 <system.net>
 	<mailSettings>
@@ -16,37 +17,42 @@ Module for sending emails via smtp with fluent interface
 
 ## Prepare Fluent Mailer Resolving
 For now you have two ways to resolve Fluent Mailer Instance:
+
 1. Register Fluent Mailer dependencies in Unity (using FluentMailer.Unity package)
-```csharp
-var unityContainer = new UnityContainer();
-unityContainer.RegisterFluentMailerDependencies();
-```
-Now, you can resolve Fluent Mailer through Unity:
-```csharp
-public class SomeService
-{
-	private readonly IFluentMailer _fluentMailer;
+
+  ```csharp
+  var unityContainer = new UnityContainer();
+  unityContainer.RegisterFluentMailerDependencies();
+  ```
+  Now, you can resolve Fluent Mailer through Unity:
+  
+  ```csharp
+  public class SomeService
+  {
+      private readonly IFluentMailer _fluentMailer;
 	
-	public SomeService(IFluentMailer fluentMailer)
-	{
-		_fluentMailer = fluentMailer;
-	}
+      public SomeService(IFluentMailer fluentMailer)
+      {
+          _fluentMailer = fluentMailer;
+      }
 	
-	public void SendMessage()
-	{
-		// Using _fluentMailer here
-	}
-}
-```
+      public void SendMessage()
+      {
+          // Using _fluentMailer here
+      }
+  }
+  ```
+  
 2. Resolve Fluent Mailer through a static factory (using FluentMailer.Factory package)
-```csharp
-var fluentMailer = FluentMailerFactory.Create();
-```
-Additionally, you can configure resolving Fluent Mailer through a static factory for you dependency injection container.
-Example for NInject:
-```csharp
-Bind<IFluentMailer>.ToMethod(context => FluentMailerFactory.Create())
-```
+
+  ```csharp
+  var fluentMailer = FluentMailerFactory.Create();
+  ```
+  Additionally, you can configure resolving Fluent Mailer through a static factory for you dependency injection container.
+  Example for NInject:
+  ```csharp
+  Bind<IFluentMailer>.ToMethod(context => FluentMailerFactory.Create())
+  ```
 
 # Using Fluent Mailer
 
@@ -115,5 +121,6 @@ await _fluentMailer.CreateMessage()
 	.WithReceiver("abc@abc.com")
 	.WithReceiver("bcd@bcd.com")
 	.WithSubject("Mail subject")
+	.WithAttachment("~/book.pdf")
 	.SendAsync();
 ```
