@@ -84,7 +84,7 @@ namespace FluentMailer
             return this;
         }
 
-        public IFluentMailerMailSender WithReceivers(IEnumerable<string> emails)
+        public IFluentMailerMailSender WithReceivers(string[] emails)
         {
             if (emails.Any(
                     x =>

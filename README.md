@@ -86,6 +86,7 @@ var mailSender = message.WithViewBody("<html><body>Test message</body></html>");
 ```csharp
 mailSender.WithReceiver("abc@abc.com"); // Adds abc@abc.com to recievers
 mailSender.WithReceivers(new [] {"bcd@bcd.com", "cde@cde.com"}); // Adds bcd@bcd.com and cde@cde.com to receivers too
+mailSender.WithReceivers("def@def.com", "efg@efg.com"); // Finally, adds def@def.com and efg@efg.com to receivers
 ```
 
 ### Setting Up Subject
@@ -118,8 +119,7 @@ You can do all of it in one move
 ```csharp
 await _fluentMailer.CreateMessage()
 	.WithViewBody("<html><body>Test message</body></html>")
-	.WithReceiver("abc@abc.com")
-	.WithReceiver("bcd@bcd.com")
+	.WithReceivers("abc@abc.com", "bcd@bcd.com")
 	.WithSubject("Mail subject")
 	.WithAttachment("~/book.pdf")
 	.SendAsync();

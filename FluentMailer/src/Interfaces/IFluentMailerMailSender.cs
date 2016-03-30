@@ -8,7 +8,7 @@ namespace FluentMailer.Interfaces
     public interface IFluentMailerMailSender
     {
         IFluentMailerMailSender WithReceiver(string email);
-        IFluentMailerMailSender WithReceivers(IEnumerable<string> emails);
+        IFluentMailerMailSender WithReceivers(params string[] emails);
         IFluentMailerMailSender WithSubject(string subject);
         IFluentMailerMailSender WithAttachment(string filename);
         IFluentMailerMailSender WithAttachment(Stream fileContent, string filename);
