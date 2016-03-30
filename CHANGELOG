@@ -1,3 +1,6 @@
+v1.1.4
+[+] Added comma-separated values support into WithReceivers method call
+
 v1.1.2
 [+] Shallow Readme fixes
 [+] Implemented creating of message body creator throught Unity if FluentMailer.Unity used
